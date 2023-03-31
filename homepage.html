@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage</title>
+
+    <style>
+      html {
+        line-height: 1.15;
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        margin: 0;
+      }
+      main {
+        display: block;
+      }
+      h1 {
+        font-size: 2em;
+        margin: 0.67em 0;
+      }
+      hr {
+        box-sizing: content-box;
+        height: 0;
+        overflow: visible;
+      }
+      pre {
+        font-family: monospace, monospace;
+        font-size: 1em;
+      }
+      a {
+        background-color: transparent;
+      }
+      abbr[title] {
+        border-bottom: none;
+        text-decoration: underline;
+        text-decoration: underline dotted;
+      }
+      b,
+      strong {
+        font-weight: bolder;
+      }
+      code,
+      kbd,
+      samp {
+        font-family: monospace, monospace;
+        font-size: 1em;
+      }
+      small {
+        font-size: 80%;
+      }
+      sub,
+      sup {
+        font-size: 75%;
+        line-height: 0;
+        position: relative;
+        vertical-align: baseline;
+      }
+      sub {
+        bottom: -0.25em;
+      }
+      sup {
+        top: -0.5em;
+      }
+      img {
+        border-style: none;
+      }
+      button,
+      input,
+      optgroup,
+      select,
+      textarea {
+        font-family: inherit;
+        font-size: 100%;
+        line-height: 1.15;
+        margin: 0;
+      }
+      button,
+      input {
+        overflow: visible;
+      }
+      button,
+      select {
+        text-transform: none;
+      }
+      [type="button"],
+      [type="reset"],
+      [type="submit"],
+      button {
+        -webkit-appearance: button;
+      }
+      [type="button"]::-moz-focus-inner,
+      [type="reset"]::-moz-focus-inner,
+      [type="submit"]::-moz-focus-inner,
+      button::-moz-focus-inner {
+        border-style: none;
+        padding: 0;
+      }
+      [type="button"]:-moz-focusring,
+      [type="reset"]:-moz-focusring,
+      [type="submit"]:-moz-focusring,
+      button:-moz-focusring {
+        outline: 1px dotted ButtonText;
+      }
+      fieldset {
+        padding: 0.35em 0.75em 0.625em;
+      }
+      legend {
+        box-sizing: border-box;
+        color: inherit;
+        display: table;
+        max-width: 100%;
+        padding: 0;
+        white-space: normal;
+      }
+      progress {
+        vertical-align: baseline;
+      }
+      textarea {
+        overflow: auto;
+      }
+      [type="checkbox"],
+      [type="radio"] {
+        box-sizing: border-box;
+        padding: 0;
+      }
+      [type="number"]::-webkit-inner-spin-button,
+      [type="number"]::-webkit-outer-spin-button {
+        height: auto;
+      }
+      [type="search"] {
+        -webkit-appearance: textfield;
+        outline-offset: -2px;
+      }
+      [type="search"]::-webkit-search-decoration {
+        -webkit-appearance: none;
+      }
+      ::-webkit-file-upload-button {
+        -webkit-appearance: button;
+        font: inherit;
+      }
+      details {
+        display: block;
+      }
+      summary {
+        display: list-item;
+      }
+      template {
+        display: none;
+      }
+      [hidden] {
+        display: none;
+      }
+
+      /* ######################################################## */
+
+      /* General Styles */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        color: #ddd;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        background-color: #434753;
+        padding-top: 0.01em;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        font-weight: normal;
+        margin: 0;
+        padding: 0;
+      }
+      a {
+        text-decoration: none;
+      }
+
+      /* ################################################################### */
+
+
+
+      ul {
+        margin: 2rem;
+        list-style-type: none;
+        padding: 2rem;
+        display: flex;
+        gap: 2rem;
+
+        background-color: #32343c;
+        border-radius: 0.75rem;
+      }
+      a {
+        color: white;
+        display: block;
+      }
+
+      .btn {
+        text-decoration: none;
+        text-align: center;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+        border-radius: 0.5rem;
+        border: solid 1px #38bdf8;
+      }
+
+      .btn-full {
+        background-color: #38bdf8;
+        color: black;
+      }
+      .btn-outline {
+        color: white;
+      }
+
+
+      .flex-container {
+        display: flex;
+        gap: 2rem;
+        margin: 2rem;
+        background-color: #32343c;
+        border-radius: 0.75rem;
+      }
+
+      .flex-container .flex-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      .flex-item {
+        width: 100%;
+        white-space: nowrap;
+      }
+
+      @supports (display: grid) {
+        .discl {
+          display: none;
+        }
+      }
+
+
+
+      /* Episode 4 - Login Screen  */
+      section {
+        background-color: #32343c;
+        height: 100%;
+        margin: 2rem;
+        padding: 2rem;
+        border-radius: 0.75rem;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+      }
+      .login .btn {
+        text-decoration: none;
+        text-align: center;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+        border-radius: 0.5rem;
+        border: solid 1px #38bdf8;
+      }
+      .login .btn-full {
+        background-color: #38bdf8;
+        color: black;
+      }
+      .login .btn-outline {
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav>
+      <ul>
+        <li><a href="#" class="btn btn-outline">Homepage</a></li>
+        <li><a href="#" class="btn btn-outline">Page</a></li>
+        <li><a href="#" class="btn btn-outline">Shop</a></li>
+      </ul>
+    </nav>
+
+    <p class="discl">grid CSS seems not supported by your browser</p>
+    <div class="flex-container">
+      <div class="flex-container">
+        <a href="#" class="btn btn-outline flex-item">Homepage</a>
+        <a href="#" class="btn btn-outline flex-item">Page</a>
+        <a href="#" class="btn btn-outline flex-item">Shop</a>
+      </div>
+    </div>
+    <div class="flex-container">
+      <div class="flex-container">
+        <a href="#" class="btn btn-outline flex-item">Homepage</a>
+        <a href="#" class="btn btn-outline flex-item">Page</a>
+        <a href="#" class="btn btn-outline flex-item"
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit.</a
+        >
+      </div>
+    </div>
+
+    <section class="login">
+      <a href="#" class="btn btn-full">Sign In</a>
+      <a href="#" class="btn btn-outline">Create Account</a>
+    </section>
+  </body>
+</html>
