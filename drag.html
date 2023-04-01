@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .dropzone {
+        width: 100px;
+        height: 100px;
+        padding: 20px;
+        border: 1px solid #aaaaaa;
+      }
+
+      .source {
+        width: 100px;
+        height: 100px;
+        padding: 20px;
+        border: 1px solid #aaaaaa;
+      }
+
+      .trash {
+        background-color: #32343c;
+        padding: 1.5rem;
+        border-radius: 0.25rem;
+        text-align: center;
+        margin: auto;
+      }
+
+      .container {
+        margin: 2rem;
+        padding: 2rem;
+        display: flex;
+        gap: 2rem;
+        background-color: #32343c;
+        border-radius: 0.75rem;
+      }
+    </style>
+    <script>
+      "use strict";
+
+      // Helpers
+
+      //Find the closest Element with Class cls including the Element el itself
+      // el: the element you start with
+      // cls: the class you want to find
+      function findClosestAncestorOrSelfWithClass(el, cls) {
+        if (el.classList.contains(cls)) return el;
+
+        while ((el = el.parentElement) && !el.classList.contains(cls));
+        return el;
+      }
+
+      function dragover(ev) {
+        ev.preventDefault();
+      }
+
+      function dragoverTrash(ev) {
+        ev.preventDefault();
+      }
+
+      function dragstart(ev) {
+        // we pass the id of the source element
+        ev.dataTransfer.setData("text", ev.target.id);
+      }
+
+      function drop(ev) {
+        ev.preventDefault();
+
+        let source_id = ev.dataTransfer.getData("text");
+
+        let target_node = findClosestAncestorOrSelfWithClass(
+          ev.target,
+          "dropzone"
+        );
+
+        if (source_id.startsWith("copy_of_")) {
+          //we move an existing copy
+
+          // we will replace the dropzone in the ID value after the moving
+          let new_id = source_id.split("|")[0] + "|" + target_node.id;
+
+          if (target_node.firstChild) {
+            //there is something we must replace???
+            target_node.replaceChild(
+              document.getElementById(source_id),
+              target_node.firstChild
+            );
+          } else {
+            target_node.appendChild(document.getElementById(source_id));
+          }
+
+          // replace the id value with the correct dropzone part
+          target_node.firstChild.id = new_id;
+        } else {
+          // we add a new copy
+          let copy = document.getElementById(source_id).cloneNode();
+
+          copy.id = "copy_of_" + copy.id + "|" + target_node.id; // we need unique IDs
+
+          if (target_node.firstChild) {
+            target_node.replaceChild(copy, target_node.firstChild);
+          } else {
+            target_node.appendChild(copy);
+          }
+        }
+      }
+
+      function dropTrash(ev) {
+        ev.preventDefault();
+        var source_id = ev.dataTransfer.getData("text");
+
+        if (source_id.startsWith("copy_of_")) {
+          let element = document.getElementById(source_id).parentElement;
+          while (element.firstChild) {
+            element.removeChild(element.firstChild);
+          }
+        } else {
+          // do not trash an original
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div
+        id="dropzone_1"
+        class="dropzone"
+        ondrop="drop(event)"
+        ondragover="dragover(event)"
+      ></div>
+      <div
+        id="dropzone_2"
+        class="dropzone"
+        ondrop="drop(event)"
+        ondragover="dragover(event)"
+      ></div>
+      <div
+        id="dropzone_3"
+        class="dropzone"
+        ondrop="drop(event)"
+        ondragover="dragover(event)"
+      ></div>
+      <div
+        id="dropzone_4"
+        class="dropzone"
+        ondrop="drop(event)"
+        ondragover="dragover(event)"
+      ></div>
+      <div
+        class="dropzone trash"
+        ondrop="dropTrash(event)"
+        ondragover="dragoverTrash(event)"
+      >
+        <img
+          id="trash"
+          src="https://dummyimage.com/100/eee/000.png&text=Trash"
+          width="100"
+          height="100"
+        />
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="source">
+        <img
+          id="shield"
+          src="https://dummyimage.com/100/eee/000.png&text=Shield"
+          draggable="true"
+          ondragstart="dragstart(event)"
+          width="100"
+          height="100"
+        />
+      </div>
+
+      <div class="source">
+        <img
+          id="engine"
+          src="https://dummyimage.com/100/eee/000.png&text=Engine"
+          draggable="true"
+          ondragstart="dragstart(event)"
+          width="100"
+          height="100"
+        />
+      </div>
+
+      <div class="source">
+        <img
+          id="ioncannon"
+          src="https://dummyimage.com/100/eee/000.png&text=Ion Cannon"
+          draggable="true"
+          ondragstart="dragstart(event)"
+          width="100"
+          height="100"
+        />
+      </div>
+
+      <div class="source">
+        <img
+          id="computer"
+          src="https://dummyimage.com/100/eee/000.png&text=Computer"
+          draggable="true"
+          ondragstart="dragstart(event)"
+          width="100"
+          height="100"
+        />
+      </div>
+    </div>
+  </body>
+</html>
